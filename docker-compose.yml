@@ -1,0 +1,7 @@
+services:
+  jmeter:
+    image: jlesage/jmeter:latest
+    ports:
+      - "5900:5900"  # VNC 포트
+    environment:
+      - VNC_PASSWORD=1234  # VNC 접속 비밀번호 설정
