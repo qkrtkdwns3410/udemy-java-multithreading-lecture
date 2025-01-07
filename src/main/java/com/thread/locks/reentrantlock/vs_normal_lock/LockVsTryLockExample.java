@@ -1,4 +1,4 @@
-package com.thread.reentrantlock.vs_normal_lock;
+package com.thread.locks.reentrantlock.vs_normal_lock;
 
 import java.util.concurrent.locks.ReentrantLock;
 
