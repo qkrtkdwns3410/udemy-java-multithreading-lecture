@@ -109,18 +109,20 @@ public class Main {
         }
         
         public T pop() {
-            StackNode<T> currentHeadNode = head.get();
+            StackNode<T> currentHeadNode = head.get(); //현재 헤드
             StackNode<T> newHeadNode;
             
             while (currentHeadNode != null) { // 스택이 비어있다면 pop 을 수행해도 의미가 없기에 비어있지 않은 경우만 순회한다.
                 newHeadNode = currentHeadNode.next; // 새로운 헤드는 현재 헤드의 다음 노드가 된다.
                 
+                /*CAS 연산*/
                 if (head.compareAndSet(currentHeadNode, newHeadNode)) {
                     break;
                 } else {
                     LockSupport.parkNanos(1);
                     currentHeadNode = head.get();
                 }
+                /*CAS 연산 종료*/
             }
             
             counter.incrementAndGet();
